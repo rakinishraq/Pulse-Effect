@@ -1,0 +1,137 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://addons/gui_in_vr/gui_panel_3d.tscn" type="PackedScene" id=1]
+[ext_resource path="res://addons/WindGrass/WindGrassScene.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Drum.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Cymbal.tscn" type="PackedScene" id=4]
+[ext_resource path="res://World.gd" type="Script" id=5]
+[ext_resource path="res://default_env.tres" type="Environment" id=6]
+[ext_resource path="res://Stick.tscn" type="PackedScene" id=7]
+[ext_resource path="res://sounds/Rock-Kit-HiHat-Pedal.wav" type="AudioStream" id=8]
+[ext_resource path="res://sounds/Rock-Ride-Bell.wav" type="AudioStream" id=10]
+[ext_resource path="res://sounds/Rock-Snare-ff-1.wav" type="AudioStream" id=11]
+[ext_resource path="res://sounds/Rock-Kit-Crash-1-1.wav" type="AudioStream" id=12]
+[ext_resource path="res://sounds/Rock-Kit-Floor-1.wav" type="AudioStream" id=13]
+[ext_resource path="res://sounds/Rock-Rack-1.wav" type="AudioStream" id=14]
+[ext_resource path="res://sounds/Rock-Kit-Kick-ff-1.wav" type="AudioStream" id=15]
+
+[node name="World" type="Spatial"]
+script = ExtResource( 5 )
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource( 6 )
+
+[node name="OmniLight" type="OmniLight" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0477042, 0.473206, -0.010045 )
+light_color = Color( 0.866667, 1, 0.87451, 1 )
+light_energy = 0.038
+shadow_enabled = true
+
+[node name="OmniLight2" type="OmniLight" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.49588, 1.56774, 0.990947 )
+light_energy = 0.368
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.972239, 0.233988, 0, -0.233988, 0.972239, 0.062099, 1.03004, 0.709037 )
+current = true
+
+[node name="WindGrass" parent="." instance=ExtResource( 2 )]
+transform = Transform( 0.0833069, 0, 0, 0, 0.0833069, 0, 0, 0, 0.0833069, -0.043608, -0.071574, -0.332485 )
+
+[node name="CharacterRoot" parent="WindGrass" index="2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3.2527, 1.04492, -0.0638657 )
+
+[node name="GUIPanel3D" parent="." instance=ExtResource( 1 )]
+transform = Transform( 0, 0, -2, 0, 2, 0, 2, 0, 0, 0.5, 1.4, 0 )
+visible = false
+
+[node name="Drum Set" type="Spatial" parent="."]
+transform = Transform( 0.342128, 0, 0, 0, 0.342128, 0, 0, 0, 0.342128, -0.0734059, 0, -0.305198 )
+
+[node name="FloorTom" parent="Drum Set" instance=ExtResource( 3 )]
+transform = Transform( 1.14836, 0, 0.0482709, 0, 1.14937, 0, -0.0482709, 0, 1.14836, 0.819094, 1.26402, -0.0773578 )
+
+[node name="Base" parent="Drum Set/FloorTom" index="1"]
+transform = Transform( 0.380088, 0, 0, 0, 0.363619, 0, 0, 0, 0.380088, 0, -0.307054, 0 )
+
+[node name="AudioStreamPlayer3D" parent="Drum Set/FloorTom" index="3"]
+stream = ExtResource( 13 )
+
+[node name="Snare" parent="Drum Set" instance=ExtResource( 3 )]
+transform = Transform( 1.09571, 0, 0.0460581, 0, 1, 0, -0.0460581, 0, 1.09571, -0.505993, 1.5294, -0.159822 )
+
+[node name="AudioStreamPlayer3D" parent="Drum Set/Snare" index="3"]
+stream = ExtResource( 11 )
+
+[node name="Bass" parent="Drum Set" instance=ExtResource( 3 )]
+transform = Transform( 1.78237, 0.0683169, -3.27493e-09, 0, -7.11045e-08, -1.78394, -0.0749214, 1.62524, -7.79099e-08, 0.160926, 0.895835, -1.01255 )
+
+[node name="AudioStreamPlayer3D" parent="Drum Set/Bass" index="3"]
+stream = ExtResource( 15 )
+
+[node name="MidTom" parent="Drum Set" instance=ExtResource( 3 )]
+transform = Transform( 0.999118, 0.0106154, 0.040634, 0, 0.967529, -0.252762, -0.0419977, 0.252539, 0.966675, 0.625066, 2.01526, -0.700884 )
+
+[node name="Base" parent="Drum Set/MidTom" index="1"]
+transform = Transform( 0.380088, 0, 0, 0, 0.254954, 0, 0, 0, 0.380088, 0, -0.198113, 0 )
+
+[node name="AudioStreamPlayer3D" parent="Drum Set/MidTom" index="3"]
+stream = ExtResource( 14 )
+
+[node name="HighTom" parent="Drum Set" instance=ExtResource( 3 )]
+transform = Transform( 0.851732, 0.00904946, 0.0346398, 0, 0.824803, -0.215475, -0.0358024, 0.215285, 0.824075, -0.262794, 2.01526, -0.668158 )
+
+[node name="Base" parent="Drum Set/HighTom" index="1"]
+transform = Transform( 0.380088, 0, 0, 0, 0.216142, 0, 0, 0, 0.380088, 0, -0.148826, 0 )
+
+[node name="AudioStreamPlayer3D" parent="Drum Set/HighTom" index="3"]
+stream = ExtResource( 14 )
+
+[node name="Ride" parent="Drum Set" instance=ExtResource( 4 )]
+transform = Transform( 1.07539, -0.0599411, -0.3131, 0, 0.633895, -0.345841, 0.329046, 0.1959, 1.02327, 1.5, 2.36713, -0.799971 )
+
+[node name="AudioStreamPlayer3D" parent="Drum Set/Ride" index="3"]
+stream = ExtResource( 10 )
+
+[node name="Crash" parent="Drum Set" instance=ExtResource( 4 )]
+transform = Transform( 0.999118, 0, 0.0419977, 0, 1, 0, -0.0419977, 0, 0.999118, 1.60551, 1.79318, 0.0437022 )
+
+[node name="AudioStreamPlayer3D" parent="Drum Set/Crash" index="3"]
+stream = ExtResource( 12 )
+
+[node name="Crash2" parent="Drum Set" instance=ExtResource( 4 )]
+transform = Transform( 0.706067, 0.131812, 0.331079, 0, 0.954287, -0.235138, -0.346939, 0.268256, 0.673791, -1.04715, 2.31574, -0.229804 )
+
+[node name="AudioStreamPlayer3D" parent="Drum Set/Crash2" index="3"]
+stream = ExtResource( 12 )
+
+[node name="Hi-Hat" parent="Drum Set" instance=ExtResource( 4 )]
+transform = Transform( 0.498808, 0, 0.245098, 0, 0.813043, 0, -0.245098, 0, 0.498808, -0.994794, 1.89845, 0.594101 )
+
+[node name="Bottom" parent="Drum Set/Hi-Hat" index="1"]
+visible = true
+
+[node name="AudioStreamPlayer3D" parent="Drum Set/Hi-Hat" index="3"]
+stream = ExtResource( 8 )
+
+[node name="LStick" parent="." instance=ExtResource( 7 )]
+transform = Transform( 0.342128, 0, 0, 0, 0.342128, 0, 0, 0, 0.342128, -0.167305, 0.275693, -0.102402 )
+
+[node name="RStick" parent="." instance=ExtResource( 7 )]
+transform = Transform( 0.342128, 0, 0, 0, 0.342128, 0, 0, 0, 0.342128, -0.0670339, 0.275693, -0.102402 )
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+
+[editable path="WindGrass"]
+[editable path="Drum Set/FloorTom"]
+[editable path="Drum Set/Snare"]
+[editable path="Drum Set/Bass"]
+[editable path="Drum Set/MidTom"]
+[editable path="Drum Set/HighTom"]
+[editable path="Drum Set/Ride"]
+[editable path="Drum Set/Crash"]
+[editable path="Drum Set/Crash2"]
+[editable path="Drum Set/Hi-Hat"]

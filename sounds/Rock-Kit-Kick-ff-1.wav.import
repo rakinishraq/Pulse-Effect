@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Rock-Kit-Kick-ff-1.wav-978615322bc010ed2f6d616f57857179.sample"
+
+[deps]
+
+source_file="res://sounds/Rock-Kit-Kick-ff-1.wav"
+dest_files=[ "res://.import/Rock-Kit-Kick-ff-1.wav-978615322bc010ed2f6d616f57857179.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

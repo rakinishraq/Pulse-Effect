@@ -1,0 +1,90 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://materials/outline.tres" type="Material" id=1]
+[ext_resource path="res://shaders/complete.gdshader" type="Shader" id=2]
+[ext_resource path="res://CymbalDisk.tscn" type="PackedScene" id=3]
+[ext_resource path="res://shaders/botw.gdshader" type="Shader" id=4]
+
+[sub_resource type="ShaderMaterial" id=4]
+next_pass = ExtResource( 1 )
+shader = ExtResource( 2 )
+shader_param/albedo = Color( 0.705882, 1, 0.964706, 1 )
+shader_param/specular = 0.5
+shader_param/specular_amount = 0.811
+shader_param/specular_smoothness = 0.0
+shader_param/rim = 0.5
+shader_param/rim_amount = 0.2
+shader_param/rim_smoothness = 0.05
+shader_param/metallic = 0.272
+shader_param/roughness = 0.0
+shader_param/emission = Color( 0, 0, 0, 1 )
+shader_param/emission_energy = 1.0
+shader_param/normal_scale = 1.0
+shader_param/depth_scale = 0.0
+shader_param/depth_min_layers = 8
+shader_param/depth_max_layers = 32
+shader_param/flip_tangent = false
+shader_param/flip_binormal = false
+shader_param/ao_light_affect = 0.0
+shader_param/anisotropy_ratio = 0.0
+shader_param/anisotropy_direction = Vector3( 0, -1, 0 )
+shader_param/aniso_map_dir_ratio = 0.0
+shader_param/subsurface_scattering = 0.0
+shader_param/transmission = Color( 0, 0, 0, 1 )
+shader_param/refraction = 0.0
+shader_param/uv_scale = Vector2( 1, 1 )
+shader_param/uv_offset = Vector2( 0, 0 )
+
+[sub_resource type="CylinderMesh" id=2]
+material = SubResource( 4 )
+top_radius = 0.0
+height = 0.2
+
+[sub_resource type="CylinderShape" id=5]
+radius = 0.68765
+height = 0.105476
+
+[sub_resource type="ShaderMaterial" id=7]
+shader = ExtResource( 4 )
+shader_param/tint = Color( 1, 1, 1, 1 )
+shader_param/metallic = 0.0
+shader_param/shadow_size = 0.045
+shader_param/shadow_blend = 0.001
+shader_param/shadow_extra_intensity = 0.0
+shader_param/shadow_color = Color( 0.541176, 0.541176, 0.541176, 1 )
+shader_param/light_tint = Color( 0, 1, 0.898039, 1 )
+shader_param/rimlight_size = 0.921
+shader_param/rimlight_blend = 0.01
+shader_param/rimlight_color = Color( 1, 1, 1, 1 )
+shader_param/use_normalmap = true
+shader_param/animated = true
+shader_param/time_scale = 0.02
+shader_param/normal_bias = Vector3( 0, 0, 0 )
+shader_param/light_bias = Vector3( 0, 0, 0 )
+shader_param/use_view = true
+shader_param/view_bias = Color( 1, 0, 1, 1 )
+shader_param/view_multiplier = -1.0
+
+[sub_resource type="CylinderMesh" id=8]
+material = SubResource( 7 )
+
+[node name="Cymbal" type="KinematicBody"]
+
+[node name="Top" parent="." instance=ExtResource( 3 )]
+
+[node name="Bottom" type="MeshInstance" parent="."]
+transform = Transform( -0.670951, 5.86564e-08, 0, -5.86564e-08, -0.670951, 0, 0, 0, 0.670951, 1.50944e-08, -0.172659, 0 )
+visible = false
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0058102, 0 )
+shape = SubResource( 5 )
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+
+[node name="Mesh" type="MeshInstance" parent="."]
+transform = Transform( 0.662812, 0, 0, 0, 0.0169443, 0, 0, 0, 0.662812, 0.000955288, -0.0913353, 0.00168014 )
+mesh = SubResource( 8 )
+material/0 = null
