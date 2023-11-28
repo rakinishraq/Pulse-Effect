@@ -11,8 +11,12 @@ config_version=4
 [application]
 
 config/name="Pulse Effect VR"
-run/main_scene="res://World.tscn"
+run/main_scene="res://Menu.tscn"
 config/icon="res://addons/gui_in_vr/icon.png"
+
+[autoload]
+
+Global="*res://Global.gd"
 
 [display]
 

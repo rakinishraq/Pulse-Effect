@@ -6,8 +6,9 @@ onready var tolerance = world.tolerance
 onready var controls = [null]+world.drums
 
 func _ready():
-	if not world.VR_mode:
-		$MeshInstance.visible = false
+	if not Global.VR_Mode:
+		queue_free()
+	$MeshInstance.visible = false
 
 
 func _physics_process(_delta):

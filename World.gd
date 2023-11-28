@@ -25,7 +25,7 @@ var prog = -1
 var distance = 20
 
 func _ready():
-	if VR_mode:
+	if Global.VR_Mode:
 		$Camera.current = false
 		add_child(PlayerVR.instance())
 	$Timer.wait_time = 60.0/bpm
